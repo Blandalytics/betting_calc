@@ -11,18 +11,18 @@ run_list = [str(x) for x in range(7)] + ['7+']
 out_list = [str(x) for x in range(8,24)] + ['24+']
 
 prop_ids = {
-    'Strikeouts':[0,k_list],
-    'Hits':[504337972,hit_list],
-    'Walks':[682826722,bb_list],
-    'Runs':[2063469959,run_list],
-    'Outs':[2134418880,out_list],
+    'Strikeouts':[0,k_list,5.5],
+    'Hits':[504337972,hit_list,5.5],
+    'Walks':[682826722,bb_list,1.5],
+    'Runs':[2063469959,run_list,2.5],
+    'Outs':[2134418880,out_list,17.5],
 }
 
 # Inputs
 player = st.selectbox('Choose a pitcher:', games)
 player = player[:-6].strip()
 prop = st.selectbox('Choose a prop:', prop_ids.keys())
-o_u_val = st.selectbox('Select the Over/Under line:', [int(x)+0.5 for x in prop_ids[prop][1][:-1]])
+o_u_val = st.selectbox('Select the Over/Under line:', [int(x)+0.5 for x in prop_ids[prop][1][:-1]], value=prop_ids[prop][2])
 u_odds_amer = st.number_input('Under Value (American Odds)', min_value=-300, max_value=300,value=-115)
 o_odds_amer = st.number_input('Over Value (American Odds)', min_value=-300, max_value=300,value=-115)
 
