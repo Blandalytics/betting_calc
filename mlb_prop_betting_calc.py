@@ -55,3 +55,4 @@ for side in ['under','over']:
     regr_pred = regr_factor*val+(1-regr_factor)*odds_frac_vig_adj
     regr_kelly = (regr_pred*odds_dec-1) / (odds_dec-1) / 3 #33% regressed Kelly
     st.write(f'Suggested Bet: {side.title()} @ {regr_kelly*100:.1f}%')
+st.write("Individual probabilities found here](https://docs.google.com/spreadsheets/d/1AjuzZDECOTwhLJ_8Q6Jp8DFv11gSJ43dgYUdpcvXueU/edit#gid=0)")
