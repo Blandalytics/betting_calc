@@ -11,11 +11,11 @@ run_list = [str(x) for x in range(7)] + ['7+']
 out_list = [str(x) for x in range(8,24)] + ['24+']
 
 prop_ids = {
-    'Strikeouts':[0,k_list,5.5],
-    'Hits':[504337972,hit_list,5.5],
-    'Walks':[682826722,bb_list,1.5],
-    'Runs':[2063469959,run_list,2.5],
-    'Outs':[2134418880,out_list,17.5],
+    'Strikeouts':[0,k_list,5],
+    'Hits':[504337972,hit_list,5],
+    'Walks':[682826722,bb_list,1],
+    'Runs':[2063469959,run_list,2],
+    'Outs':[2134418880,out_list,9],
 }
 
 # Inputs
