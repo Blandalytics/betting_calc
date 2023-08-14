@@ -23,8 +23,10 @@ player = st.selectbox('Choose a pitcher:', games)
 player = player[:-6].strip()
 prop = st.selectbox('Choose a prop:', prop_ids.keys())
 o_u_val = st.selectbox('Select the Over/Under line:', [int(x)+0.5 for x in prop_ids[prop][1][:-1]], value=prop_ids[prop][2])
-u_odds_amer = st.number_input('Under Value (American Odds)', min_value=-300, max_value=300,value=-115)
-o_odds_amer = st.number_input('Over Value (American Odds)', min_value=-300, max_value=300,value=-115)
+u_odds_amer = st.number_input('Under Value (American Odds)', 
+                              min_value=-300, max_value=300, value=-115, step=5)
+o_odds_amer = st.number_input('Over Value (American Odds)', 
+                              min_value=-300, max_value=300, value=-115, step=5)
 
 props = pd.read_csv(f'https://docs.google.com/spreadsheets/d/1AjuzZDECOTwhLJ_8Q6Jp8DFv11gSJ43dgYUdpcvXueU/export?format=csv&gid={prop_ids[prop][0]}')
 for val in prop_ids[prop][1]:
