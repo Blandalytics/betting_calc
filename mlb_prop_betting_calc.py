@@ -22,7 +22,7 @@ prop_ids = {
 player = st.selectbox('Choose a pitcher:', games)
 player = player[:-6].strip()
 prop = st.selectbox('Choose a prop:', prop_ids.keys())
-o_u_val = st.selectbox('Select the Over/Under line:', [int(x)+0.5 for x in prop_ids[prop][1][:-1]], value=prop_ids[prop][2])
+o_u_val = st.selectbox('Select the Over/Under line:', [int(x)+0.5 for x in prop_ids[prop][1][:-1]], index=prop_ids[prop][2])
 u_odds_amer = st.number_input('Under Value (American Odds)', 
                               min_value=-300, max_value=300, value=-115, step=5)
 o_odds_amer = st.number_input('Over Value (American Odds)', 
