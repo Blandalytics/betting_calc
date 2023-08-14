@@ -25,8 +25,11 @@ prop = st.selectbox('Choose a prop:', prop_ids.keys())
 o_u_val = st.selectbox('Select the Over/Under line:', [int(x)+0.5 for x in prop_ids[prop][1][:-1]], index=prop_ids[prop][2])
 u_odds_amer = st.number_input('Under Value (American Odds)', 
                               min_value=-300, max_value=300, value=-115, step=5)
+imputed_over_frac = abs(u_odds_amer)/(abs(u_odds_amer)+100) if u_odds_amer<0 else 100/(u_odds_amer+100)
+imputed_over_frac_adj = imputed_over_frac*215/115/2
+imputed_over = round(((100/(1-imputed_over_frac_adj/1.07))-90)/5 if (1-imputed_over_frac_adj) <0.5 else ((1-imputed_over_frac_adj/1.07)*100/(1-(1-imputed_over_frac_adj/1.07))*-1)/5)*5
 o_odds_amer = st.number_input('Over Value (American Odds)', 
-                              min_value=-300, max_value=300, value=-115, step=5)
+                              min_value=-300, max_value=300, value=imputed_over, step=5)
 
 props = pd.read_csv(f'https://docs.google.com/spreadsheets/d/1AjuzZDECOTwhLJ_8Q6Jp8DFv11gSJ43dgYUdpcvXueU/export?format=csv&gid={prop_ids[prop][0]}')
 for val in prop_ids[prop][1]:
@@ -55,4 +58,4 @@ for side in ['under','over']:
     regr_pred = regr_factor*val+(1-regr_factor)*odds_frac_vig_adj
     regr_kelly = (regr_pred*odds_dec-1) / (odds_dec-1) / 3 #33% regressed Kelly
     st.write(f'Suggested Bet: {side.title()} @ {regr_kelly*100:.1f}%')
-st.write("Individual probabilities found here](https://docs.google.com/spreadsheets/d/1AjuzZDECOTwhLJ_8Q6Jp8DFv11gSJ43dgYUdpcvXueU/edit#gid=0)")
+st.write("Individual probabilities found [here](https://docs.google.com/spreadsheets/d/1AjuzZDECOTwhLJ_8Q6Jp8DFv11gSJ43dgYUdpcvXueU/edit#gid=0)")
